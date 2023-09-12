@@ -24,5 +24,18 @@
  - 프로젝트 Git 주소 연결, TypeScript 관련 세팅
  - npm run 명령어와 관련된 내용 정리해서 블로그에 업로드 (현재 비공개 처리 중)
  - ts 파일 정상적으로 컴파일이 되는 지 Test 진행 (Hello World 출력하기) (성공)
+<hr/><br/><br/>
 
-
+# 2023.09.12 화요일 작업 내용
+ - **첫번째 Commit("오늘 날짜와 요일을 Console에 출력")** <br/>
+   => 현재 날짜와 요일을 console에 출력하는 Code 작성<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      오늘 날짜와 요일이 Chrome 개발자 도구에 출력되는 것을 확인했다. <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (출력 값: 9 12 2) <br/><br/>
+   => 여기서 <b>'9', '12'</b>는 오늘 날짜를, <b>'2'</b>는 요일을 뜻한다. <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Week라는 배열에 <b>'화요일'</b>이라는 문자 값이 week 배열 2번 칸에 저장됐기 때문에 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      출력되는 값 또한 해당 요일이 저장된 배열 칸의 번호가 나온다. (0번부터 Start)
+<hr/><br/><br/>
