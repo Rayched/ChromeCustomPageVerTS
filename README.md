@@ -37,5 +37,30 @@
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Week라는 배열에 <b>'화요일'</b>이라는 문자 값이 week 배열 2번 칸에 저장됐기 때문에 <br/>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      출력되는 값 또한 해당 요일이 저장된 배열 칸의 번호가 나온다. (0번부터 Start)
+      출력되는 값 또한 해당 요일이 저장된 배열 칸의 번호가 나온다. (0번부터 Start)<br/><br/>
+
+ - **두번째 Commit ("month, date를 좀 더 깔끔하게 출력하도록 Code 수정")** <br/>
+   => 오늘 날짜와 요일이 <b>'9 12 2'</b>와 같은 형식으로 출력됐었다. <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   이런 식으로 출력을 해도 상관은 없지만 좀 더 보기 깔끔하게 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   숫자 10 미만의 월月, 일日의 값에 0을 붙여서 출력하도록 코드를 수정했다. <br/><br/>
+
+   => <b>modifyNumber</b>라는 임의의 함수를 만들고 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   매개변수 num에 전달된 값이 10보다 작으면 <b>"0"</b>을 붙여서 반환하고 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   전달된 값이 10보다 크면 그냥 그대로 <b>num의 값</b>을 반환하는 기능을 추가했다. <br/><br/>
+  
+   => 이후에 오늘 날짜와 요일을 표시하는 <b>getNowDate 함수</b> 내부의 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   현재 월, 일을 반환하는 Date 객체의 getMonth와 getDate 메서드의 반환값을 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   modifyNumber 함수의 인자 값으로 전달하도록 코드를 수정하였다. <br/><br/>
+
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   이후 프로그램을 실행해서 현재 날짜와 요일이 <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   아래와 같은 형태로 출력되는 것을 확인할 수 있었다. <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **출력 값: 09 12 2**
 <hr/><br/><br/>

@@ -18,6 +18,19 @@
 //현재 날짜와 시간을 나타내는 HTML 요소를 참조하는 변수's
 const dateElement = document.getElementById("Today_Date");
 const timeElement = document.getElementById("Now_Time");
+//날짜에서 월(month) 출력을 좀 더 깔끔하게
+//'09'와 같은 형식으로 출력하기 위해서
+//month 값을 수정하는 함수
+const modifyNumber = (num) => {
+    //num의 값이 10 미만의 값이라면
+    //전달받은 숫자 값 앞에 0을 붙여서 반환한다.
+    if (num < 10) {
+        return "0" + String(num);
+    }
+    else {
+        return num;
+    }
+};
 //오늘 날짜, 요일을 계산하는 함수
 const getNowDate = () => {
     const nowDate = new Date();
@@ -31,11 +44,11 @@ const getNowDate = () => {
         "금요일",
         "토요일"
     ];
-    let month = nowDate.getMonth() + 1; //월
+    let month = modifyNumber(nowDate.getMonth() + 1); //월
     //getMonth method는 0 ~ 11까지의 값을 반환하기 때문에
     //우리가 원하는 형태로 출력하기 위해서 '1'을 더하는 것으로
     //getMonth() method의 return 값을 1 ~ 12로 출력할 수 있다.
-    let date = nowDate.getDate(); //일
+    let date = modifyNumber(nowDate.getDate()); //일
     let day = nowDate.getDay(); //요일
     console.log(month, date, day);
 };
