@@ -64,3 +64,20 @@
    아래와 같은 형태로 출력되는 것을 확인할 수 있었다. <br/>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **출력 값: 09 12 2**
 <hr/><br/><br/>
+
+# 2023.09.20 수요일
+<h4>"dateElement 객체 null 경고 issue 발생 (해결방안 탐색 중)"</h4>
+
+ - **getNowDate()** 함수로 가져온 오늘 날짜 정보를 <br/>
+   웹 페이지의 날짜를 표시하는 요소에 반영하는 **setNowDate()** 함수 추가 <br/>
+
+ - getNowDate() 함수에서 호출했을 때 <br/>
+      setNowDate()의 매개변수와 인자간 타입 불일치 error 발생 <br/>
+
+      오늘 날짜 정보를 가져오는 date 객체의 method's return 값을 <br/>
+      항상 숫자로 표시하기 위해서 추가한 modifyNumber() 함수가 문제였기에 <br/>
+      해당 함수를 지우니 타입 불일치 문제가 해결됐다. <br/>
+
+ - const로 선언한 변수 **'dateElement'** 가 null일 수도 있다는 경고 발생함. <br/>
+   (해결법 탐색 중) 
+
