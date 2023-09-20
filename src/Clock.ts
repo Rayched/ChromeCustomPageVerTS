@@ -67,7 +67,8 @@ const getNowDate = () => {
 //getNowDate 함수로 가져온 오늘 날짜를
 //"Today_Info" 요소에 반영하는 함수
 const setNowDate = (month: number, date: number, day: string) => {
-    dateElement.textContent = `${month}월 ${date}일 ${day}요일`;
+    if(!dateElement) return; //해결..?
+    dateElement.textContent = `${month}월 ${date}일 ${day}`;
     //dateElement가 null일 수도 있다고 한다.
 };
 
