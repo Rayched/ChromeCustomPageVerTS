@@ -44,25 +44,26 @@ const getNowDate = () => {
         "금요일",
         "토요일"
     ];
-    let month = nowDate.getMonth() + 1; //월
+    let month = modifyNumber(nowDate.getMonth() + 1); //월
     //getMonth method는 0 ~ 11까지의 값을 반환하기 때문에
     //우리가 원하는 형태로 출력하기 위해서 '1'을 더하는 것으로
     //getMonth() method의 return 값을 1 ~ 12로 출력할 수 있다.
-    let date = nowDate.getDate(); //일
+
+    let date = modifyNumber(nowDate.getDate()); //일
+    //modifyNumber 함수는 앞에서 선언한 사용자 정의 함수다.
+    //10 미만의 숫자를 '0n'의 형태로 출력하는 함수
+    //단, 10 미만의 숫자는 문자열로 형변환된다.
+
     let day = nowDate.getDay(); //요일
     console.log(month, date, day);
     setNowDate(month, date, week[day]);
-    //modifyNumber() 함수를 삭제하니
-    //일단은 문제가 해결됐다.
-    //그래서 modifyNumber() 함수는 뭘까..?
-    //구글링을 해도 답이 안나오는데....
 };
+
 //getNowDate 함수로 가져온 오늘 날짜를
 //"Today_Info" 요소에 반영하는 함수
 const setNowDate = (month, date, day) => {
     if (!dateElement)
-        return; //해결..?
+        return;
     dateElement.textContent = `${month}월 ${date}일 ${day}`;
-    //dateElement가 null일 수도 있다고 한다.
 };
 getNowDate();
