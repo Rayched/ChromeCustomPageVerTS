@@ -82,11 +82,14 @@
 
  - const로 선언한 변수 **'dateElement'** 가 null일 수도 있다는 경고 발생함. <br/>
    해결법을 찾기 위해서 구글링을 하면서 다른 개발자 분들이 개인 블로그에 정리한 <br/>글을 몇개 읽어봤지만 정리해둔 내용을 이해하기 힘들어서 포기할까 하다가 <br/>우연히 보게된 다른 개발자 분이 Github 블로그에 정리해둔 글에서 해결법을 찾았고 <br/>이를 내가 작성한 코드에 적용을 하니 문제가 해결됐다. <br/>
-   해결과정 <a href="">'object' is possibly 'null' 문제 해결하기</a>
+   해결과정 <a href="https://rclogstorage.tistory.com/116">'object' is possibly 'null' 문제 해결하기</a>
 <hr/>
 
 <h4>"setNowDate 함수의 매개변수 month, date 타입 불일치 문제 해결"</h4>
 
 - **setNowDate** 함수의 매개변수 month, date의 타입을 number 단일에서 <br/>
   union 타입으로 변경하니 해결됐다. (**number** => **number | String** )
-  
+<hr/><br/>
+
+# 2023.09.25 월요일
+<h4>크롬 시작화면 - 시계 Part 완성</h4>

@@ -23,6 +23,7 @@ const timeElement = document.getElementById("Now_Time");
 //날짜에서 월(month) 출력을 좀 더 깔끔하게
 //'09'와 같은 형식으로 출력하기 위해서
 //month 값을 수정하는 함수
+//그냥 10 미만의 숫자를 두 자릿수로 변환하는 함수
 const modifyNumber = (num: number) => {
     //num의 값이 10 미만의 값이라면
     //전달받은 숫자 값 앞에 0을 붙여서 반환한다.
@@ -71,4 +72,16 @@ const setNowDate = (month: number|string, date: number|string, day: string) => {
     dateElement.textContent = `${month}월 ${date}일 ${day}`;
 };
 
+//현재 시간을 가져오는 함수 getNowTime
+const getNowTime = () => {
+    const nowDate = new Date();
+    //Date 객체 생성, nowDate 변수(상수)에 저장
+
+    let hour = modifyNumber(nowDate.getHours());
+    let minute = modifyNumber(nowDate.getMinutes());
+
+    console.log(hour, minute);
+}
+
 getNowDate();
+getNowTime();

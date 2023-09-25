@@ -21,6 +21,7 @@ const timeElement = document.getElementById("Now_Time");
 //날짜에서 월(month) 출력을 좀 더 깔끔하게
 //'09'와 같은 형식으로 출력하기 위해서
 //month 값을 수정하는 함수
+//그냥 10 미만의 숫자를 두 자릿수로 변환하는 함수
 const modifyNumber = (num) => {
     //num의 값이 10 미만의 값이라면
     //전달받은 숫자 값 앞에 0을 붙여서 반환한다.
@@ -48,17 +49,14 @@ const getNowDate = () => {
     //getMonth method는 0 ~ 11까지의 값을 반환하기 때문에
     //우리가 원하는 형태로 출력하기 위해서 '1'을 더하는 것으로
     //getMonth() method의 return 값을 1 ~ 12로 출력할 수 있다.
-
     let date = modifyNumber(nowDate.getDate()); //일
     //modifyNumber 함수는 앞에서 선언한 사용자 정의 함수다.
     //10 미만의 숫자를 '0n'의 형태로 출력하는 함수
     //단, 10 미만의 숫자는 문자열로 형변환된다.
-
     let day = nowDate.getDay(); //요일
     console.log(month, date, day);
     setNowDate(month, date, week[day]);
 };
-
 //getNowDate 함수로 가져온 오늘 날짜를
 //"Today_Info" 요소에 반영하는 함수
 const setNowDate = (month, date, day) => {
@@ -66,4 +64,14 @@ const setNowDate = (month, date, day) => {
         return;
     dateElement.textContent = `${month}월 ${date}일 ${day}`;
 };
+//현재 시간을 가져오는 함수 getNowTime
+const getNowTime = () => {
+    const nowDate = new Date();
+    //Date 객체 생성, nowDate 변수(상수)에 저장
+    let hour = modifyNumber(nowDate.getHours());
+    let minute = modifyNumber(nowDate.getMinutes());
+    console.log(hour, minute);
+};
+
 getNowDate();
+getNowTime();
