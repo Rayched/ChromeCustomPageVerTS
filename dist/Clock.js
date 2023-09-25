@@ -85,6 +85,8 @@ const setNowTime = (hour, minute) => {
         return; //null guard
     timeElement.textContent = `${hour}시 ${minute}분`;
 };
-
 getNowDate();
 getNowTime();
+setInterval(getNowTime, 1000); //1초마다 getNowTime 함수 실행
+//기존 코드는 새로고침을 해야 시간이 변화됐는데
+//위의 함수를 추가하는 것으로 그럴 필요가 없어졌다.
