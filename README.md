@@ -92,4 +92,27 @@
 <hr/><br/>
 
 # 2023.09.25 월요일
-<h4>크롬 시작화면 - 시계 Part 완성</h4>
+<h4>현재 시간을 가져오는 getNowTime 함수 생성, 기본 틀 작성</h4>
+
+- 현재 시간을 가져오는 **getNowTime** 함수를 생성 <br/>
+  Date 객체에서 가져온 현재 시간 정보를 console에 출력 시도 <br/>
+  정상적으로 출력되는 것을 확인하였음. <br/>
+  추가적으로 TypeScript 컴파일러 설정을 변경하였다. <br/>
+
+<hr/>
+<h4>현재 시간을 웹 페이지에 출력하기</h4>
+
+- getNowTime 함수로 가져온 현재 시간 정보를 <br/>
+  HTML 문서 상에 출력하는 **setNowTime** 함수 생성 <br/>
+
+- 한 자릿수 숫자를 두 자릿수로 바꿔서 출력하는 modifyNumber 함수는 <br/>
+  인자로 전달된 값이 한 자릿수면 두 자릿수 숫자로 변환한다. <br/>
+  단, 이때 변환되는 숫자는 number가 아니라 string이다. <br/>
+
+- 따라서 외부에서 setNowTime을 호출할 때 <br/>
+  매개변수가 number 단일 타입이면 Type 불일치 issue가 발생하므로 <br/>
+  매개변수의 Data Type을 **number|string** 인 **union type**으로 설정하였다.
+
+- 추가적으로 **timeElement 객체**가 null 이외의 type이란 것을 알리기 위해서 <br/>
+  **setNowTime 함수** 상단에 null을 걸러내는 logic을 추가하였다. 
+  

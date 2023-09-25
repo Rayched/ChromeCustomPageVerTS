@@ -68,6 +68,13 @@ const getNowDate = () => {
 //getNowDate 함수로 가져온 오늘 날짜를
 //"Today_Info" 요소에 반영하는 함수
 const setNowDate = (month: number|string, date: number|string, day: string) => {
+    //한 자릿수를 두 자릿수로 바꾸는 modifyNumber 함수에서
+    //두 자릿수로 변경할 때, 인자로 전달된 값을 문자열로 형변환하는
+    //logic이 존재한다.
+    //따라서 매개변수의 type이 숫자, 문자열 두 가지여야만
+    //문제가 안 생기기 때문에 각 매개변수의 type을
+    //'number|string', union type으로 설정하였다.
+
     if(!dateElement) return;
     dateElement.textContent = `${month}월 ${date}일 ${day}`;
 };
@@ -80,8 +87,15 @@ const getNowTime = () => {
     let hour = modifyNumber(nowDate.getHours());
     let minute = modifyNumber(nowDate.getMinutes());
 
-    console.log(hour, minute);
-}
+    setNowTime(hour, minute);
+};
+
+//getNowTime으로 가져온 시간 정보를
+//HTML 요소에 반영하는 함수 setNowTime
+const setNowTime = (hour: number|string, minute: number|string) => {
+    if(!timeElement) return; //null guard
+    timeElement.textContent = `${hour}시 ${minute}분`;
+};
 
 getNowDate();
 getNowTime();
