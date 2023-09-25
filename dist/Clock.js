@@ -85,5 +85,6 @@ const setNowTime = (hour, minute) => {
         return; //null guard
     timeElement.textContent = `${hour}시 ${minute}분`;
 };
+
 getNowDate();
 getNowTime();

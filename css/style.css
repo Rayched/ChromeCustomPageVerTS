@@ -1,0 +1,35 @@
+:root {
+    --xxlarge : 170px;
+    --xlarge : 35px;
+    --large : 28px;
+    --medium : 18px;
+    --small : 16px;
+    --xsmall : 14px;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    margin : 0 auto;
+    width: 100%;
+}
+
+.Main_Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Main_Container .Main_Wrapper {
+    text-align: center;
+}
+
+.Main_Wrapper .Today_Date {
+    font-size: var(--large);
+    font-weight: 400;
+}
+
+.Main_Wrapper .Now_Time {
+    font-size: var(--xlarge);
+    font-weight: 400;
+}

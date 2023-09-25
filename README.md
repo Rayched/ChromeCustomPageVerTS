@@ -115,4 +115,7 @@
 
 - 추가적으로 **timeElement 객체**가 null 이외의 type이란 것을 알리기 위해서 <br/>
   **setNowTime 함수** 상단에 null을 걸러내는 logic을 추가하였다. 
+<hr/>
+<h4>웹 페이지에 css style Setting</h4>
+
   
