@@ -32,4 +32,15 @@ body {
 .Main_Wrapper .Now_Time {
     font-size: var(--xlarge);
     font-weight: 400;
+    /*
+        예제에서 설정한 font-size와
+        내가 설정한 font-size가 다르다보니
+        날짜, 시간 두 요소가 겹쳐서 나오는 issue 있었다.
+
+        'margin-top: -35px;'을 삭제하니 문제가 해결됨
+        (날짜 font가 large, 시간 font가 xlarge로
+         xlarge의 px 크기가 large의 거의 3배 정도로
+         그냥 두면 간격이 너무 벌어지므로 margin 영역의 top 부분을 줄이는
+         속성을 추가한 것으로 보인다.)
+    */
 }
