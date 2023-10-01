@@ -44,3 +44,25 @@ body {
          속성을 추가한 것으로 보인다.)
     */
 }
+
+.Main_Wrapper .Search {
+    display: flex;
+    justify-content: center;
+}
+
+.Search #Search_Input {
+    width: 600px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: var(--medium);
+    padding: 15px 0px;
+    border-radius: 30px;
+    border: 0px;
+    text-align: center;
+    margin: 15px;
+}
+
+.Search #Search_Input::placeholder {
+    color: rgba(169, 169, 169);
+    font-size: var(--medium);
+}
