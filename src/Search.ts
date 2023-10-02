@@ -8,8 +8,8 @@ const ShowSearchResult = () => {
     if(!SearchInput) return;
     let SearchWord = SearchInput.value;
     //SearchInput 객체에서 'value'라는 property 참조하지 못하는 error 발생
-    
-    window.location.href=`https://www.google.com/search?q={SearchWord}`;
+
+    window.location.href=`https://www.google.com/search?q=${SearchWord}`;
     SearchWord = "";
 };
 
