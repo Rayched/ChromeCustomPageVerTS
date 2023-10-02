@@ -1,6 +1,8 @@
 //검색창 logic
 
-const SearchInput = document.getElementById("Search_Input") as HTMLElement;
+const SearchInput = document.getElementById("Search_Input") as HTMLInputElement;
+//SearchInput의 타입을 HTMLInputElement로 단언하였음.
+//as => Type Assertion (타입 단언) 
 
 const ShowSearchResult = () => {
     if(!SearchInput) return;
@@ -11,12 +13,14 @@ const ShowSearchResult = () => {
     SearchWord = "";
 };
 
-const EnterKey = (event: Event) => {
+const EnterKey = (event: KeyboardEvent) => {
+    //'event'의 타입을 'Event'에서 'KeyboardEvent'로 변경하니
+    //Error가 해결되었음.
     if(event.code === "Enter"){
         ShowSearchResult();
     }
 };
 
-SearchInput.addEventListener("keypress", (event: Event) => {
+SearchInput.addEventListener("keypress", (event) => {
     EnterKey(event);
 });

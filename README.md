@@ -185,6 +185,27 @@
   검색창이 원하는대로 정상적으로 동작하는 지를 확인한 다음<br/>
   문제가 없으면 그대로 Git Repository에 Upload할 것 <br/>
   (작업과정 중간중간에 계속해서 Github에 업로드하기는 할 것이다.)
-<hr/>
+<hr/><br/>
+
+# 2023.10.02 월요일
+
+<h4>TS2339 Error 해결</h4>
+
+- **TS2339(property does not exist on type)** Error를 해결하였음. <br/>
+  Index.html의 '.Search_Input'이라는 class를 가진 Input 요소를 참조하는 <br/>
+  상수 **SearchInput**의 타입을 **HTMLInputElement**으로 단언하는 방법을 통해 <br/>
+  검색 결과로 넘어가는 기능을 하는 함수 ShowSearchResult의 지역 변수인 SearchWord가 <br/> SearchInput 객체의 value property를 참조하지 못하는 문제를 해결하였음. <br/>
+
+- EnterKey 함수의 매개변수로 들어간 event의 타입을 Event로 명시한 상태에서 <br/>
+  event 객체의 code property와 관련된 이슈가 발생하였음. <br/>
+  다른 변수를 선언하고, 이중 표명으로 이벤트 타입을 명시하는 방법을 사용해봐도 <br/>Error가 해결되지 않다가 event의 타입을 KeyboardEvent로 명시하니 해결됐다. <br/>
+
+- **TS2339(property does not exist on type)** Error를 해결하기는 했지만 <br/>
+  이게 왜 어떤 원리로 문제가 해결됐는 지를 이해하지는 못했다. <br/>
+  어떤 원리로 Error가 해결됐는지를 알아야만 비로소 내 것이라고 할 수 있다. <br/>
+  해결된 이유를 알지 못하면 다음에 같은 Issue가 발생해도 <br/> 
+  내 힘으로 해결하는 것이 쉽지 않을 것이다. <br/>
+  그리고 그런 상황을 미연에 방지하기 위해서 Error가 해결된 이유를 알아야만 한다.
+  
 
 
