@@ -61,7 +61,6 @@ const getNowDate = () => {
     //단, 10 미만의 숫자는 문자열로 형변환된다.
 
     let day = nowDate.getDay(); //요일
-    console.log(month, date, day);
     setNowDate(month, date, week[day]);
 };
 

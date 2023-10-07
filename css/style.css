@@ -18,10 +18,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
 }
 
 .Main_Container .Main_Wrapper {
     text-align: center;
+    position: fixed;
+    /* 
+    시계는 북마크 바의 열림/닫힘 상태에 상관없이
+    고정된 위치를 유지해야하므로 position을 fixed로 설정하였음.
+    */
 }
 
 .Main_Wrapper .Today_Date {
@@ -65,4 +71,51 @@ body {
 .Search #Search_Input::placeholder {
     color: rgba(169, 169, 169);
     font-size: var(--medium);
+}
+
+.Bookmark_Open {
+    width: 240px;
+    padding: 15px 30px;
+    font-size: var(--small);
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex; 
+    justify-content: flex-end;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Bookmark_Close {
+    width: 240px;
+    padding: 15px 30px;
+    font-size: var(--small);
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex; 
+    justify-content: flex-end;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Bookmark_Close div {
+    cursor: pointer;
+}
+
+.Bookmark_Open div {
+    cursor: pointer;
+}
+
+.Bookmark_Bar {
+    width: 240px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    min-height: calc(100vh - 70px);
+    padding: 10px 30px;
+    color: white;
 }

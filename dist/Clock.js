@@ -54,7 +54,6 @@ const getNowDate = () => {
     //10 미만의 숫자를 '0n'의 형태로 출력하는 함수
     //단, 10 미만의 숫자는 문자열로 형변환된다.
     let day = nowDate.getDay(); //요일
-    console.log(month, date, day);
     setNowDate(month, date, week[day]);
 };
 //getNowDate 함수로 가져온 오늘 날짜를
