@@ -12,6 +12,9 @@ const BookmarkBar = document.getElementById("Bookmark_Bar") as HTMLElement;
 const BookmarkOpen = document.getElementById("Bookmark_Open") as HTMLElement;
 const BookmarkClose = document.getElementById("Bookmark_Close") as HTMLElement;
 
+const BookmarkOpenBtn = document.getElementById("Bookmark_Open_Btn") as HTMLElement;
+const BookmarkCloseBtn = document.getElementById("Bookmark_Close_Btn") as HTMLElement;
+
 /*
     * [북마크 열기]를 클릭하면, 북마크 바를 열고
       [북마크 닫기]를 클릭하면, 북마크 바를 닫는 동작을 수행하는
@@ -49,9 +52,5 @@ const BookmarkBarToggle = () => {
     }
 };
 
-document.getElementById("Bookmark_Open_Btn").addEventListener("click", BookmarkBarToggle);
-document.getElementById("Bookmark_Close_Btn").addEventListener("click", BookmarkBarToggle);
-//이 두 개의 객체가 null일지도 모른다는 경고 발생
-//기존에 사용하던 null guard는 사용하지 못한다.
-//아예 다른 형태로 북마크 toggle logic을 구현해야할 것 같다.
-
+BookmarkOpenBtn.addEventListener("click", BookmarkBarToggle);
+BookmarkCloseBtn.addEventListener("click", BookmarkBarToggle);

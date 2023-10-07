@@ -2,7 +2,6 @@
 //북마크 바 버튼 관련 logic
 //[북마크 열기] 버튼을 클릭하면 북마크 바가 열리고
 //[북마크 닫기] 버튼을 클릭하면 북마크 바가 닫혀야한다.
-var _a, _b;
 /* 북마크와 관련된 logic을 구현하려면
  * index.html에서 구현한 북마크 관련 요소들인
  * id가 Bookmark_Bar, Bookmark_Open, Bookmark_Close인 요소들을
@@ -11,6 +10,8 @@ var _a, _b;
 const BookmarkBar = document.getElementById("Bookmark_Bar");
 const BookmarkOpen = document.getElementById("Bookmark_Open");
 const BookmarkClose = document.getElementById("Bookmark_Close");
+const BookmarkOpenBtn = document.getElementById("Bookmark_Open_Btn");
+const BookmarkCloseBtn = document.getElementById("Bookmark_Close_Btn");
 /*
     * [북마크 열기]를 클릭하면, 북마크 바를 열고
       [북마크 닫기]를 클릭하면, 북마크 바를 닫는 동작을 수행하는
@@ -47,5 +48,6 @@ const BookmarkBarToggle = () => {
         BookmarkClose.style.display = "none";
     }
 };
-(_a = document.getElementById("Bookmark_Open_Btn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", BookmarkBarToggle);
-(_b = document.getElementById("Bookmark_Close_Btn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", BookmarkBarToggle);
+
+BookmarkOpenBtn.addEventListener("click", BookmarkBarToggle);
+BookmarkCloseBtn.addEventListener("click", BookmarkBarToggle);
