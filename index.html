@@ -50,10 +50,37 @@
         </div>
 
         <!-- 북마크 바 본체-->
-        <div class="Bookmark_Bar" id="Bookmark_Bar"></div>
+        <div class="Bookmark_Bar" id="Bookmark_Bar">
+            <!-- 북마크 아이템 추가하기 -->
+            <div class="Bookmark_Item_Add_Btn">
+                추가
+            </div>
 
+            <div class="Bookmark_Item_InputForm" id="Bookmark_Item_InputForm">
+                <div class="Bookmark_Input">
+                    <div class="NewBookmarkName">
+                        <div class="Label">이름</div>
+                        <input id="NewBookmarkNameInput"/>
+                    </div>
+                    <div class="NewBookmarkUrl">
+                        <div class="Label">URL</div>
+                        <input id="NewBookmarkUrlInput"/>
+                    </div>
+                </div>
+                <div class="Bookmark_Item_Input_Btn">
+                    <div class="CancelBtn" id="CancelBtn"></div>
+                    <div class="AddBtn" id="AddBtn"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 
+            TypeScript로 코드를 작성하고
+            JS File로 컴파일, 웹 페이지에서 동작하기 위해서
+            script 태그를 사용, src는 컴파일된 js 파일들
+        -->
         <script src="/dist/Clock.js"></script>
         <script src="/dist/Search.js"></script>
         <script src="/dist/Bookmark_Toggle.js"></script>
+        <script src="/dist/Bookmark.js"></script>
     </body>
 </html>
