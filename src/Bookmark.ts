@@ -29,3 +29,30 @@ if (localStorage.getItem("BookmarkItemList")){
     localStorage.setItem("BookmarkItemList", JSON.stringify(BookmarkItemList));
 }
 
+//[북마크 추가] 버튼을 눌러야만 북마크 input form이 나오는 logic 구현
+
+let isAddBtnClick: boolean = false;
+newBookmarkForm.style.display = "none";
+//북마크 입력 form이 안보이도록 변경 (기본값)
+
+const newBookmarkToggle = () => {
+    isAddBtnClick = !isAddBtnClick; 
+    //isAddBtnClick의 값을 true로 변경
+    //isAddBtnClick = !(false) = true
+
+    /*
+    if, else 문으로 작성한 코드가 의도한대로 동작하지 않는다.
+    삼항 연산자를 활용한 형태로 변경
+    if (isAddBtnClick == true){
+        newBookmarkForm.style.display = "block";
+    } else {
+        newBookmarkForm.style.display = "none";
+    }
+    */
+
+    isAddBtnClick ? (newBookmarkForm.style.display = "block") : 
+    (newBookmarkForm.style.display = "none");
+};
+
+const AddBtn_Click = document.getElementById("Bookmark_Item_Add_Btn") as HTMLElement;
+AddBtn_Click.addEventListener("click", newBookmarkToggle);

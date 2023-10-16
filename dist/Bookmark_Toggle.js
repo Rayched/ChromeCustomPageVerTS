@@ -4,7 +4,6 @@ const BookmarkOpen = document.getElementById("Bookmark_Open");
 const BookmarkClose = document.getElementById("Bookmark_Close");
 const BookmarkOpenBtn = document.getElementById("Bookmark_Open_Btn");
 const BookmarkCloseBtn = document.getElementById("Bookmark_Close_Btn");
-
 const BookmarkBarToggle = () => {
     if (!BookmarkBar)
         return;
