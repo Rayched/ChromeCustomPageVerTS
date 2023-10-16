@@ -354,9 +354,29 @@
 
 
 #### 🚫 [북마크 추가] 버튼을 눌러도 북마크 입력 form이 안나오는 issue 발생
+- 북마크 아이템 추가 관련된 logic을 구현하는 Bookmark.ts의 소스코드는 문제가 없음.
+- index.html을 확인해보니 **'북마크 추가'** 요소의 id가 입력되지 않은 것을 확인 <br/> id 값을 추가하니 정상적으로 동작하는 것을 확인할 수 있었다. <br/>
 
+ ``` html
+  <!-- Before -->
+  <div class="Bookmark_Item_Add_Btn">
+                북마크 추가
+  </div>
 
+  <!-- After -->
+  <div class="Bookmark_Item_Add_Btn" id="Bookmark_Item_Add_Btn">
+                북마크 추가
+  </div>
+```
 
+<br/>
 
+  ``` ts
+  const AddBtn_Click = document.getElementById("Bookmark_Item_Add_Btn") as HTMLElement;
+  //Bookmark_Item_Add_Btn이라는 id 값을 가진 HTML 요소가 없는 상태 
+  //(null을 return)
+  //getElementById()의 return 값을 string이라고 단언했기에
+  //Error issue가 발생하지 않았던 것이다.
 
-
+  AddBtn_Click.addEventListener("click", newBookmarkToggle);
+  ```
