@@ -344,14 +344,20 @@
 ---
 <br/>
 
-# 2023.10.16 월요일 작업일지
+# 📆 2023.10.16 월요일 작업일지
 
-#### 북마크 바 아이템 추가기능 작업 (2차)
+### 💻 북마크 바 아이템 추가 기능 작업 (2차)
 
-- TS 파일을 JS 파일로 컴파일할 때, 주석 삭제되도록 컴파일 설정 변경
+> TS 파일을 JS 파일로 컴파일할 때, 주석 삭제되도록 컴파일 설정 변경
 
-- [북마크 추가] 버튼을 눌러야만, 북마크 input form이 나오는 logic 구현
+> [북마크 추가] 버튼을 눌러야만, 북마크 input form이 나오는 logic 구현
 
+> 북마크 아이템을 추가할 수 있는 logic 구현
+
+---
+<br/>
+
+### 작업 중 발생한 issue
 
 #### 🚫 [북마크 추가] 버튼을 눌러도 북마크 입력 form이 안나오는 issue 발생
 - 북마크 아이템 추가 관련된 logic을 구현하는 Bookmark.ts의 소스코드는 문제가 없음.
@@ -380,3 +386,43 @@
 
   AddBtn_Click.addEventListener("click", newBookmarkToggle);
   ```
+---
+<br/>
+
+#### 🚫 추가한 북마크가 localStorage에 저장되지 않는 issue 발생
+
+``` ts
+const addBookmarkItem = () => {
+  let BookmarkList = [];
+  if(localStorage.getItem("BookmarkList")){
+       BookmarkList = JSON.parse(localStorage.getItem("BoookmarkList") as string);
+  }
+
+  const NewBookmarkName = document.getElementById("NewBookmarkNameInput") as HTMLInputElement;
+  const NewBookmarkURL = document.getElementById("NewBookmarkUrlInput") as HTMLInputElement;
+
+  let name = NewBookmarkName.value;
+  let url = NewBookmarkURL.value;
+  let CreateAt = Date.now();
+
+  BookmarkList.push({
+      name: name, 
+      url: url, 
+      CreateAt: CreateAt
+  });
+
+  localStorage.setItem("BookmarkList", JSON.stringify(BookmarkList));
+
+  name = NewBookmarkName.value = "";
+  url = NewBookmarkURL.value = "";
+
+
+  newBookmarkToggle();
+}
+```
+- 강의에서 진행된 Project의 Bookmark.js 소스코드를 보면서 <br>
+전체적인 흐름을 파악하고 내가 작성한 Bookmark.ts의 소스코드에 맞게 반영해야겠다.
+
+- **예상 작업기간: 미지수**
+
+---

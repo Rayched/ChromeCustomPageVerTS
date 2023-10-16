@@ -29,6 +29,41 @@ if (localStorage.getItem("BookmarkItemList")){
     localStorage.setItem("BookmarkItemList", JSON.stringify(BookmarkItemList));
 }
 
+//북마크 추가 logic
+const addBookmarkItem = () => {
+    let BookmarkList = [];
+    if(localStorage.getItem("BookmarkList")){
+        BookmarkList = JSON.parse(localStorage.getItem("BoookmarkList") as string);
+    }
+
+    const NewBookmarkName = document.getElementById("NewBookmarkNameInput") as HTMLInputElement;
+    const NewBookmarkURL = document.getElementById("NewBookmarkUrlInput") as HTMLInputElement;
+
+    let name = NewBookmarkName.value;
+    let url = NewBookmarkURL.value;
+    let CreateAt = Date.now();
+
+    BookmarkList.push({
+        name: name, 
+        url: url, 
+        CreateAt: CreateAt
+    });
+    /* 
+    BookmarkList 배열에 
+    name(북마크 이름), url(북마크 주소), CreateAt(북마크 추가 일)을
+    Property로 가진 객체를 저장한다.
+
+    그리고 이렇게 추가한 값을 localStorage에 저장한다.
+    */
+
+    localStorage.setItem("BookmarkList", JSON.stringify(BookmarkList));
+
+    name = NewBookmarkName.value = "";
+    url = NewBookmarkURL.value = "";
+
+    newBookmarkToggle();
+}
+
 //[북마크 추가] 버튼을 눌러야만 북마크 input form이 나오는 logic 구현
 
 let isAddBtnClick: boolean = false;
@@ -54,5 +89,14 @@ const newBookmarkToggle = () => {
     (newBookmarkForm.style.display = "none");
 };
 
-const AddBtn_Click = document.getElementById("Bookmark_Item_Add_Btn") as HTMLElement;
-AddBtn_Click.addEventListener("click", newBookmarkToggle);
+const AddBtn_isClick = document.getElementById("Bookmark_Item_Add_Btn") as HTMLElement;
+AddBtn_isClick.addEventListener("click", newBookmarkToggle);
+
+const BookmarkAddBtn = document.getElementById("AddBtn") as HTMLElement;
+const BookmarkCancelBtn = document.getElementById("CancelBtn") as HTMLElement;
+BookmarkAddBtn.addEventListener("click", addBookmarkItem);
+//북마크 input 상태에서 [추가]를 누르면 북마크를 추가하는 함수 실행
+
+BookmarkCancelBtn.addEventListener("click", newBookmarkToggle);
+//북마크 input 상태에서 [취소] 버튼을 누르면
+//북마크 입력 form을 띄우는 함수 실행
