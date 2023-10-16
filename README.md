@@ -281,7 +281,76 @@
 
 # 2023.10.10 화요일
 
-<h4>작업 내용: 북마크 바에 아이템을 추가하는 기능 구현하기 (1차)</h4>
+#### 작업 내용: 북마크 바에 아이템을 추가하는 기능 구현하기 (1차)
+ - 강의에서 나온 코드를 거의 그대로 클론 코딩하는 것이기 때문에 <br/>
+ 코드 작성에는 문제가 없지만, 타입 관련된 부분에서 시간을 다소 잡아먹었다.
+
+ - 이 과정에서 localstorage의 key, value 모두 string 타입이라는 것을 알게됐다.<br/>
+
+#### issue가 났던 부분 정리
+ - 배열 BookmarkItemList 타입 명시하지 않음. <br/>
+
+  ``` ts
+  //Type issue 발생
+  let BookmarkItemList = [];
+  /* Variable 'BookmarkItemList' implicitly has type 
+   * 'any[]' in some locations where its type cannot be determined.
+   * 변수 BookmarkItemList의 타입을 명시해달라고 한다.
+  */
+
+  let BookmarkItemList: string[] = [];
+  //BookmarkItemList를 string 배열로 타입을 선언하는 것으로 해결
+  ```
+  <br/>
+
+  - localstorage의 Item을 가져오는 getItem() 메서드 <br/>
+    return 값의 타입이 string 혹은 null일지도 모른다는 경고 발생
+  
+  ``` ts
+  if (localStorage.getItem("BookmarkItemList")){
+
+    BookmarkItemList = JSON.parse(localStorage.getItem("BookmarkItemList"));
+    //issue난 part
+
+  } else {
+    localStorage.setItem("BookmarkItemList", JSON.stringify(BookmarkItemList));
+  }
+  /*
+    Argument of type 'string | null' is not assignable 
+    to parameter of type 'string'.
+    Type 'null' is not assignable to type 'string'.
+  
+    JSON.parse() 메서드에 인자로 들어갈 수 있는 값의 타입은 string이다.
+    그리고 여기서 인자로 전달된 localStorage.getItem() 메서드의 return 값은
+    string 혹은 null이다. (Item이 있다면 string, 없으면 null return)
+
+    localStorage에서 BookmarkItemList라는 Item을 가져올 때
+    key와 value 모두 string 타입이기도 하고, 없을 경우 else문이 실행되는 구조이므로
+    null을 return할 일은 없을테니 getItem() 메서드의 return 값의 타입이
+    string이라고 단언해주는 것으로 해결하였음.
+  */
+
+  if (localStorage.getItem("BookmarkItemList")){
+
+    BookmarkItemList = JSON.parse(localStorage.getItem("BookmarkItemList") as String);
+    //localStorage.getItem() 메서드의 return 값의 타입이 string이라고 단언
+    //JSON.parse()의 인자로 전달되는 값의 타입에서 error나는 것을 해결함.
+
+  } else {
+    localStorage.setItem("BookmarkItemList", JSON.stringify(BookmarkItemList));
+  }
+  ```
+
+---
+<br/>
+
+# 2023.10.16 월요일 작업일지
+
+#### 북마크 바 아이템 추가기능 작업 (2차)
+
+- TS 파일을 JS 파일로 컴파일할 때, 주석 삭제되도록 컴파일 설정 변경
+
+
 
 
 

@@ -1,3 +1,9 @@
 "use strict";
-//북마크 바에 북마크를 추가할 수 있는 기능 logic
-//북마크 추가 (이름, url 입력), 삭제 기능
+const newBookmarkForm = document.getElementById("Bookmark_Item_InputForm");
+let BookmarkItemList = [];
+if (localStorage.getItem("BookmarkItemList")) {
+    BookmarkItemList = JSON.parse(localStorage.getItem("BookmarkItemList"));
+}
+else {
+    localStorage.setItem("BookmarkItemList", JSON.stringify(BookmarkItemList));
+}
