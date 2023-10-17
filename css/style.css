@@ -119,3 +119,25 @@ body {
     padding: 10px 30px;
     color: white;
 }
+
+.Bookmark_Item_Input_Btn .AddBtn {
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    border: 2px black solid;
+    display: inline-block;
+    position: relative;
+    right: 2%;
+}
+
+.Bookmark_Item_Input_Btn .CancelBtn {
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    border: 2px black solid;
+    display: inline-block;
+    position: relative;
+    left: 2.8%;
+}
