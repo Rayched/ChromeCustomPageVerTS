@@ -436,3 +436,44 @@ error가 있는 것 같다. (컴파일 시 문제는 발생하지 않았던 상�
 - **예상 작업기간: 미지수**
 
 ---
+<br>
+
+# 📆 2023.10.17 화요일 작업 일지
+
+### 💻 금일 작업 내용
+> 북마크 정보가 localStorage에 저장되지 않는 issue 해결 작업
+
+
+---
+
+#### 🚫 북마크 정보가 localStorage에 저장되지 않은 문제 해결
+
+- 문제의 원인은 Bookmark.ts의 코드에 있던 것이 아니라 <br>
+  **index.html**에서 북마크 input form의 '추가', '취소' 버튼의 id 값이 <br>
+  반대로 설정됐던 것이 원인이었다. <br/>
+
+- 북마크 정보 입력 창에서 [추가] 버튼을 누르면 <br/>
+  북마크 정보가 localStorage에 저장되지 않고, [취소] 버튼을 눌렀을 때 <br/>
+  북마크 정보가 localStorage에 저장된 것을 확인하고나서 알게된 일이다.
+
+``` html
+<!-- Before -->
+<div class="Bookmark_Item_Input_Btn">
+  <div class="CancelBtn" id="CancelBtn">추가</div>
+  <div class="AddBtn" id="AddBtn">취소</div>
+</div>
+
+<!-- After -->
+<div class="Bookmark_Item_Input_Btn">
+  <div class="AddBtn" id="AddBtn">추가</div>
+  <div class="Cancel" id="CancelBtn">취소</div>
+</div>
+```
+
+- TypeScript로 작성한 Bookmark.ts의 소스코드는 큰 문제가 없었고 <br>
+  (localStorage에 추가되는 Property가 <br>
+  bookmarkItemList, BookmarkList로 나눠지는 부분 수정) <br/>
+  HTML의 '추가'와 '취소'버튼의 id 값이 바뀐 상태였기에 <br/>
+  Bookmark.js 자체는 정상적으로 동작한 것이었다.
+  
+---
