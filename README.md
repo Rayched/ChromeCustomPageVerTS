@@ -483,12 +483,18 @@ error가 있는 것 같다. (컴파일 시 문제는 발생하지 않았던 상�
 # 📆 2023.10.18 수요일 작업일지
 
 ### 💻 금일 작업 내용
-> local Storage에 저장된 북마크 아이템을 북마크 바에 출력하는 작업
+> local Storage에 저장된 북마크 아이템을 북마크 바에 표시하는 작업
+
+> 이전에 추가했던 북마크가 북마크 바에 정상적으로 출력되는 것을   확인 <br> (네이버, 유튜브, velog)
+
+> 북마크 바에 표시되는 북마크 아이템 삭제 기능은 미구현한 상태
 
 ---
 <br>
 
 **1. local Storage에 저장된 북마크 아이템을 Console에 출력한다.**
+<br>
+
 ``` ts
 //BookmarkList 배열에 객체 형태로 저장된 북마크 정보들을
 //꺼내오는 함수, 이를 출력하는 함수
@@ -523,3 +529,121 @@ const setBookmarkList = () => {
 ![북마크 정보를 Console에 출력](/SampleImage/북마크%20정보%20console에%20출력.png)
 
 - BookmarkList 배열에 객체로 전달된 북마크 정보를 Console 창에서 확인
+
+---
+
+2. **북마크 아이템을 북마크 바에 표시**
+<br>
+- **Before Source Code**
+
+``` ts
+//매개변수 item에 전달받은 북마크 정보(객체)를
+//console에 출력하는 기능을 가진 setBookmarkItem 함수
+
+const setBookmarkItem = (item: any) => {
+//item => {name: name, url: url, CreateAt: CreateAt} (북마크 객체)
+    console.log(item); 
+};
+```
+
+- **After Source Code**
+
+``` ts
+//북마크 정보를 북마크 바에 출력하는 setBookmarkItem 함수
+
+const setBookmarkItem = (item: any) => {
+    const Bookmark_Item = document.createElement("div");
+    Bookmark_Item.classList.add("Bookmark_Item");
+    Bookmark_Item.id = `Bookmark_Item-${item.CreateAt}`;
+
+    //북마크 정보 (이름, 주소, 아이콘 등등)
+    const Bookmark_Info = document.createElement("div");
+    Bookmark_Info.classList.add("Bookmark_Info");
+
+    //북마크 주소
+    const Bookmark_URL = document.createElement("a");
+    Bookmark_URL.classList.add("Bookmark_URL");
+    Bookmark_URL.href = item.url;
+
+    //아이콘 (북마크 이름 앞에 표시)
+    const Bookmark_Icon = document.createElement("div");
+    Bookmark_Icon.classList.add("Bookmark_Icon");
+
+	//아이콘 이미지
+	const Bookmark_IconImage = document.createElement("img");
+    Bookmark_IconImage.src = `https://www.google.com/s2/favicons?domain_url=${item.url}`;
+
+	//북마크 이름
+    const nameElement = document.createElement("div");
+    nameElement.classList.add("Bookmark_Name");
+    nameElement.textContent = item.name;
+
+	//북마크 삭제 버튼 (형태만 구현, 기능 구현 X)
+    const Bookmark_DelBtn = document.createElement("div");
+    Bookmark_DelBtn.textContent = "삭제";
+    Bookmark_DelBtn.classList.add("DelBtn");
+
+    Bookmark_Item.appendChild(Bookmark_Info);
+    Bookmark_Item.appendChild(Bookmark_DelBtn);
+
+    Bookmark_Info.appendChild(Bookmark_URL);
+    
+    Bookmark_URL.appendChild(Bookmark_Icon);
+    Bookmark_URL.appendChild(nameElement);
+
+	Bookmark_Icon.append(Bookmark_IconImage);
+	
+    BookmarkItemList.appendChild(Bookmark_Item);
+}; 
+```
+
+Local Storage에 저장된 북마크 정보 (Local Storage - BookmarkList [array] - 북마크 객체)
+북마크 바에 출력하는 기능을 가진 **setBookmarkItem** 함수를 구현하였다.
+
+```
+1. 북마크 바에서 [북마크 추가] 버튼을 클릭하면
+   북마크 정보를 입력할 수 있는 입력 form이 나온다.
+
+2. 북마크 정보 입력 form에서 사이트 이름, url을 입력하고
+   [추가] 버튼을 누르면 입력한 북마크 정보가 객체의 형태로 
+   BookmarkList 배열에 저장된다.
+   그리고 BookmarkList 배열의 요소를 local Storage로 전송한다.
+
+3. 입력받은 북마크 정보를 setBookmarkItem 함수에 인자로 전달한다.
+
+4. setBookmarkItem 함수에서 전달받은 북마크 이름, 주소들을
+   content로 가진 HTML 요소를 만들고, 이를 북마크 바에 표시한다.
+   
+```
+
+
+#### 북마크 아이템 구조도
+
+``` html
+<!-- 북마크 아이템 리스트 -->
+<div class="BookmarkItemList">
+	<!-- 1. 네이버 -->
+	<div class="Bookmark_Item">
+		<!-- 북마크 정보 (이름, 주소)-->
+		<div class="Bookmark_Info">
+			<a href="https://www.naver.com/" class="Bookmark_URL">
+				<div class="Bookmark_Icon">
+					<img src="웹 페이지 아이콘 주소"/>
+				</div>
+				<div class="nameElement">
+					네이버 (북마크 추가할 때 입력한 이름)
+				</div>
+			</a>
+		</div>
+		<div class="Bookmark_DelBtn">
+			삭제
+		</div>
+	</div>
+</div>
+```
+
+<br>
+
+![북마크 바에 북마크 아이템이 출력되는 모습](/SampleImage/북마크%20아이템이%20북마크%20바에%20표시되는%20것을%20확인.png)
+
+* 삭제 버튼은 기능은 미구현 상태 (형태만 만듦)
