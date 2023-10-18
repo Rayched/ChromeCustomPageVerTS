@@ -86,7 +86,10 @@ const addBookmarkItem = () => {
 
     setBookmarkItem({name: name, url: url, CreateAt: CreateAt});
     //인자로 전달받은 북마크 객체, 북마크 아이템 정보를
-    //console에 출력한다.
+    //북마크 아이템을 북마크 바에 표시하는
+    //함수 setBookmarkItem에 전달한다.
+    //setBookmarkItem 함수는 입력한 정보를 참조해서
+    //하나의 북마크 아이템 요소를 만들어서 웹 페이지에 표시한다.
 }
 
 const setBookmarkItem = (item: any) => {
@@ -137,7 +140,6 @@ const setBookmarkItem = (item: any) => {
     BookmarkItemList.appendChild(Bookmark_Item);
 };
 
-
 const setBookmarkList = () => {
     //BookmarkList 배열에 저장된 북마크 아이템 정보를
     //배열 함수인 forEach()를 통해서 하나씩 꺼내온다.
@@ -147,7 +149,11 @@ const setBookmarkList = () => {
     });
 };
 
-//[북마크 추가] 버튼을 눌러야만 북마크 input form이 나오는 logic 구현
+//local Storage의 북마크 아이템을 삭제하는 함수 BookmarkItem_Delete
+const BookmarkItem_Delete = () => {
+    const isDelete = window.confirm("북마크를 삭제하시겠습니까?");    
+};
+
 
 let isAddBtnClick: boolean = false;
 newBookmarkForm.style.display = "none";
