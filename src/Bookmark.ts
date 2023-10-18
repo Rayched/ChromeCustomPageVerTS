@@ -90,9 +90,51 @@ const addBookmarkItem = () => {
 }
 
 const setBookmarkItem = (item: any) => {
-    //매개변수 item에 저장되는 것은 북마크 객체
-    //어떤 타입이든 들어갈 수 있도록 any 타입으로 세팅
-    console.log(item);
+    //추가한 북마크 아이템을 북마크 바에 추가하는 logic
+    //북마크 정보를 입력하고, 추가하면
+    //북마크 정보가 담긴 요소들이 추가되는 구조
+    //아래 요소가 하나로 모여서 북마크 아이템이 된다.
+
+    //북마크 아이템 요소
+    const Bookmark_Item = document.createElement("div");
+    Bookmark_Item.classList.add("Bookmark_Item");
+    Bookmark_Item.id = `Bookmark_Item-${item.CreateAt}`;
+
+    //북마크 이름
+    const Bookmark_Info = document.createElement("div");
+    Bookmark_Info.classList.add("Bookmark_Info");
+
+    //북마크 주소
+    const Bookmark_URL = document.createElement("a");
+    Bookmark_URL.classList.add("Bookmark_URL");
+    Bookmark_URL.href = item.url;
+
+    //아이콘 (북마크 이름 앞에 표시)
+    const Bookmark_Icon = document.createElement("div");
+    Bookmark_Icon.classList.add("Bookmark_Icon");
+
+    const Bookmark_IconImage = document.createElement("img");
+    Bookmark_IconImage.src = `https://www.google.com/s2/favicons?domain_url=${item.url}`;
+    
+    const nameElement = document.createElement("div");
+    nameElement.classList.add("Bookmark_Name");
+    nameElement.textContent = item.name;
+
+    const Bookmark_DelBtn = document.createElement("div");
+    Bookmark_DelBtn.textContent = "삭제";
+    Bookmark_DelBtn.classList.add("DelBtn");
+
+    Bookmark_Item.appendChild(Bookmark_Info);
+    Bookmark_Item.appendChild(Bookmark_DelBtn);
+
+    Bookmark_Info.appendChild(Bookmark_URL);
+
+    Bookmark_URL.appendChild(Bookmark_Icon);
+    Bookmark_URL.appendChild(nameElement);
+
+    Bookmark_Icon.append(Bookmark_IconImage);
+
+    BookmarkItemList.appendChild(Bookmark_Item);
 };
 
 

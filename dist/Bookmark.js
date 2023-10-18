@@ -35,7 +35,34 @@ const addBookmarkItem = () => {
     setBookmarkItem({ name: name, url: url, CreateAt: CreateAt });
 };
 const setBookmarkItem = (item) => {
-    console.log(item);
+    const Bookmark_Item = document.createElement("div");
+    Bookmark_Item.classList.add("Bookmark_Item");
+    Bookmark_Item.id = `Bookmark_Item-${item.CreateAt}`;
+
+    const Bookmark_Info = document.createElement("div");
+    Bookmark_Info.classList.add("Bookmark_Info");
+
+    const Bookmark_URL = document.createElement("a");
+    Bookmark_URL.classList.add("Bookmark_URL");
+    Bookmark_URL.href = item.url;
+    
+    const Bookmark_Icon = document.createElement("div");
+    Bookmark_Icon.classList.add("Bookmark_Icon");
+    const Bookmark_IconImage = document.createElement("img");
+    Bookmark_IconImage.src = `https://www.google.com/s2/favicons?domain_url=${item.url}`;
+    const nameElement = document.createElement("div");
+    nameElement.classList.add("Bookmark_Name");
+    nameElement.textContent = item.name;
+    const Bookmark_DelBtn = document.createElement("div");
+    Bookmark_DelBtn.textContent = "삭제";
+    Bookmark_DelBtn.classList.add("DelBtn");
+    Bookmark_Item.appendChild(Bookmark_Info);
+    Bookmark_Item.appendChild(Bookmark_DelBtn);
+    Bookmark_Info.appendChild(Bookmark_URL);
+    Bookmark_URL.appendChild(Bookmark_Icon);
+    Bookmark_URL.appendChild(nameElement);
+    Bookmark_Icon.append(Bookmark_IconImage);
+    BookmarkItemList.appendChild(Bookmark_Item);
 };
 const setBookmarkList = () => {
     BookmarkList.forEach((item) => {
