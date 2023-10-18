@@ -478,3 +478,48 @@ error가 있는 것 같다. (컴파일 시 문제는 발생하지 않았던 상�
   Bookmark.js 자체는 정상적으로 동작한 것이었다.
   
 ---
+<br>
+
+# 📆 2023.10.18 수요일 작업일지
+
+### 💻 금일 작업 내용
+> local Storage에 저장된 북마크 아이템을 북마크 바에 출력하는 작업
+
+---
+<br>
+
+**1. local Storage에 저장된 북마크 아이템을 Console에 출력한다.**
+``` ts
+//BookmarkList 배열에 객체 형태로 저장된 북마크 정보들을
+//꺼내오는 함수, 이를 출력하는 함수
+
+const addBookmarkItem = () => {
+  //일부만 추출
+  setBookmarkItem({name: name, url: url, CreateAt: CreateAt});
+  //setBookmarkItem()에 북마크 정보를 저장하는 객체를 인자로 전달
+  //양식만 전달한다고 생각하면 된다.
+
+}
+
+const setBookmarkItem = (item: any) => {
+    console.log(item); 
+    //매개변수 item에 전달된 인자를 console에 출력
+    //여기서 item에 전달되는 것은 BookmarkList 배열에
+    //객체로 저장된 북마크 정보들이다.
+};
+
+
+const setBookmarkList = () => {
+    BookmarkList.forEach((item) => {
+      //배열 함수인 forEach()를 통해
+      //BookmarkList 배열에 객체로 저장된 북마크 정보들을
+      //하나씩 꺼내온다.
+        setBookmarkItem(item);
+        //그리고 북마크 정보를 console에 출력하는 기능을 가진
+        //setBookmarkItem() 함수를 실행한다.
+    });
+};
+```
+![북마크 정보를 Console에 출력](/SampleImage/북마크%20정보%20console에%20출력.png)
+
+- BookmarkList 배열에 객체로 전달된 북마크 정보를 Console 창에서 확인

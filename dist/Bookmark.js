@@ -1,5 +1,6 @@
 "use strict";
 const newBookmarkForm = document.getElementById("Bookmark_Item_InputForm");
+const BookmarkItemList = document.getElementById("Bookmark_List");
 let BookmarkList = [];
 if (localStorage.getItem("BookmarkList")) {
     BookmarkList = JSON.parse(localStorage.getItem("BookmarkList"));
@@ -27,20 +28,26 @@ const addBookmarkItem = () => {
         url: url,
         CreateAt: CreateAt
     });
-    console.log(BookmarkList);
     localStorage.setItem("BookmarkList", JSON.stringify(BookmarkList));
     NewBookmarkName.value = "";
     NewBookmarkURL.value = "";
     newBookmarkToggle();
+    setBookmarkItem({ name: name, url: url, CreateAt: CreateAt });
+};
+const setBookmarkItem = (item) => {
+    console.log(item);
+};
+const setBookmarkList = () => {
+    BookmarkList.forEach((item) => {
+        setBookmarkItem(item);
+    });
 };
 let isAddBtnClick = false;
 newBookmarkForm.style.display = "none";
-
 const AddBtn_isClick = document.getElementById("Bookmark_Item_Add_Btn");
 AddBtn_isClick.addEventListener("click", newBookmarkToggle);
-
 const BookmarkAddBtn = document.getElementById("AddBtn");
 BookmarkAddBtn.addEventListener("click", addBookmarkItem);
-
 const BookmarkCancelBtn = document.getElementById("CancelBtn");
 BookmarkCancelBtn.addEventListener("click", newBookmarkToggle);
+setBookmarkList();

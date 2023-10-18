@@ -2,6 +2,8 @@
 //북마크 추가 (이름, url 입력), 삭제 기능
 
 const newBookmarkForm = document.getElementById("Bookmark_Item_InputForm") as HTMLElement;
+const BookmarkItemList = document.getElementById("Bookmark_List") as HTMLElement;
+
 
 //웹 페이지에서 추가해둔 북마크 아이템들이
 //재접속 시 그대로 남아있으려면 localstorage에 저장돼야한다.
@@ -75,17 +77,33 @@ const addBookmarkItem = () => {
     그리고 이렇게 추가한 값을 localStorage에 저장한다.
     */
 
-    console.log(BookmarkList); 
-    //입력한 북마크 정보가 제대로 BookmarkList 배열에 추가됐는지
-    //확인하는 코드
-
     localStorage.setItem("BookmarkList", JSON.stringify(BookmarkList));
 
     NewBookmarkName.value = "";
     NewBookmarkURL.value = "";
 
     newBookmarkToggle();
+
+    setBookmarkItem({name: name, url: url, CreateAt: CreateAt});
+    //인자로 전달받은 북마크 객체, 북마크 아이템 정보를
+    //console에 출력한다.
 }
+
+const setBookmarkItem = (item: any) => {
+    //매개변수 item에 저장되는 것은 북마크 객체
+    //어떤 타입이든 들어갈 수 있도록 any 타입으로 세팅
+    console.log(item);
+};
+
+
+const setBookmarkList = () => {
+    //BookmarkList 배열에 저장된 북마크 아이템 정보를
+    //배열 함수인 forEach()를 통해서 하나씩 꺼내온다.
+
+    BookmarkList.forEach((item) => {
+        setBookmarkItem(item);
+    });
+};
 
 //[북마크 추가] 버튼을 눌러야만 북마크 input form이 나오는 logic 구현
 
@@ -104,3 +122,5 @@ const BookmarkCancelBtn = document.getElementById("CancelBtn") as HTMLElement;
 BookmarkCancelBtn.addEventListener("click", newBookmarkToggle);
 //북마크 input 상태에서 [취소] 버튼을 누르면
 //북마크 입력 form을 띄우는 함수 실행
+
+setBookmarkList();
