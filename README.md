@@ -655,25 +655,19 @@ Local Storage에 저장된 북마크 정보 (Local Storage - BookmarkList [array
 
 ### 💻 금일 작업 내용 
 > 북마크 아이템 삭제 기능 구현
+
+> 북마크 바 CSS Style 적용 <br/>
+  북마크 추가, 북마크 입력 form, 북마크 목록 전부 설정 완료
 ---
 <br>
 
  **1. 북마크 아이템 삭제 기능 구현**
 
-``` ts
-//북마크 아이템을 삭제할 수 있는 기능 구현
+- 먼저 아래와 같이 localStorage에 저장된 북마크 아이템을 삭제하는 <br/>
+  함수 **BookmarkItem_Delete**를 아래와 같이 구현하였다. <br/>
 
-//setBookmarkItem 함수에서 추가한
-//삭제 버튼 관련 코드
-/*
-    const Bookmark_DelBtn = document.createElement("div");
-    Bookmark_DelBtn.textContent = "삭제";
-    Bookmark_DelBtn.classList.add("DelBtn");
-    
-    Bookmark_DelBtn.addEventListener("click", () => {
-        BookmarkItem_Delete(item.CreateAt);
-    });
-*/
+``` ts
+//북마크 아이템을 삭제할 수 있게하는 BookmarkItem_Delete 함수
 
 const BookmarkItem_Delete = (id: any) => {
     const isDelete = window.confirm("북마크를 삭제하시겠습니까?");
@@ -692,8 +686,59 @@ const BookmarkItem_Delete = (id: any) => {
 ```
 <br>
 
-- 북마크 아이템에서 [삭제] 버튼을 클릭하면, **BookmarkItem_Delete** 함수가 실행된다.
-- 
+- 위와 같이 북마크 아이템을 삭제하는 logic을 작성했다면 <br/>
+  이제 실제로 북마크 아이템의 **[삭제]** 버튼을 클릭하면 <br/>
+  해당 북마크 아이템이 삭제가 되야한다.
+
+- 북마크 아이템 추가 logic인 setBookmarkItem 함수에 아래와 같은 코드를 추가한다.
+
+``` ts
+//setBookmarkItem 함수, 삭제 기능 Update
+
+const setBookmarkItem = (item: any) => {
+
+  //북마크 아이템 삭제 기능
+  const Bookmark_DelBtn = document.createElement("div");
+    Bookmark_DelBtn.textContent = "삭제";
+    Bookmark_DelBtn.classList.add("DelBtn");
+    Bookmark_DelBtn.addEventListener("click", () => {
+        BookmarkItem_Delete(item.CreateAt);
+    });
+};
+```
+- **addEventListener()** 함수를 통해서 **[삭제]** 버튼을 클릭하면 <br/>
+  북마크 삭제 기능을 구현한 BookmarkItem_Delete 함수를 실행시킨다. <br/>
+  (BookmarkItem_Delete 함수의 매개변수 id에 <br/>
+  북마크 객체의 CreateAt이라는 Property를 인자로 전달한다.)
+
+<br>
+
+#### 북마크 아이템 삭제 logic 정리
+
+> 1. 북마크 바에서 **[삭제]** 버튼을 클릭하면 아래와 같은 알림창이 나온다.<br>
+  (삭제 버튼 클릭 시, BookmarkItem_Delete 함수 실행)
+
+![북마크 삭제 알림창](/SampleImage/아이템%20삭제%20시도%20시%20나오는%20알림창.png)
+
+> 2. 여기서 확인 버튼을 누르면, BookmarkItem_Delete 함수 내부에 작성된 if문이 실행되고<br> 
+취소 버튼을 누르면 if문은 실행되지 않고, 함수 실행이 종료된다.
+
+> 3. if문이 실행되면 먼저 localStorage에 저장된 BookmarkList 배열의 <br>
+    북마크 객체를 가져오고, 이를 BookmarkList 변수에 저장한다.
+
+> 4. 그 다음 바로 아래 줄의 filter() 함수를 통해서 삭제할 북마크 아이템의 id와 <br>
+    앞에서 가져온 북마크 객체 중 일치하지 않은 id를 가진 객체만 가져와서 <br/>
+    변수 NowBookmarkList에 저장해둔다.
+
+> 5. 그리고 마지막으로 id가 일치했던 북마크 아이템 요소는 <br>
+     변수 BookmarkItem_GetById으로 저장해뒀다가 remove() 함수에 의해 삭제된다.
+
+#### 북마크 삭제 전
+
+![삭제 전 예시](/SampleImage/북마크%20아이템%20삭제%20전.png)
+
+
+#### 북마크 삭제 후
+![삭제 후 예시](/SampleImage/북마크%20아이템%20삭제%20후.png)
 
 ---
-
