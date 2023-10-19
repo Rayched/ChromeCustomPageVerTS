@@ -11,6 +11,7 @@ body {
     font-family: 'Nanum Gothic', sans-serif;
     margin : 0 auto;
     width: 100%;
+    background-image: url("/SampleImage/KakaoTalk_20230722_155853902.jpg");
 }
 
 .Main_Container {
@@ -28,6 +29,10 @@ body {
     시계는 북마크 바의 열림/닫힘 상태에 상관없이
     고정된 위치를 유지해야하므로 position을 fixed로 설정하였음.
     */
+}
+
+.Main_Wrapper .Today_Info {
+    color: white;
 }
 
 .Main_Wrapper .Today_Date {
