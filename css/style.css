@@ -121,23 +121,107 @@ body {
 }
 
 .Bookmark_Item_Input_Btn .AddBtn {
-    width: 25%;
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
-    border: 2px black solid;
     display: inline-block;
     position: relative;
-    right: 2%;
+    text-align: center;
+    color: rgba(100, 100, 100);
+    width: 25%;
+    padding: 5px;
+    margin: 5px;
+    font-size: var(--small);
+    border-radius: 5px;
+    background-color: rgba(230, 230, 230, 0.8);
+    border: 0.5px rgba(230, 230, 230, 0.8);
+}
+
+.AddBtn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    border: 0.5px rgba(255, 255, 255, 1);
+    color: black;
 }
 
 .Bookmark_Item_Input_Btn .CancelBtn {
-    width: 25%;
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
-    border: 2px black solid;
     display: inline-block;
     position: relative;
-    left: 2.8%;
+    text-align: center;
+    color: rgba(100, 100, 100);
+    width: 25%;
+    padding: 5px;
+    margin: 5px;
+    font-size: var(--small);
+    border-radius: 5px;
+    background-color: rgba(230, 230, 230, 0.8);
+    border: 0.5px rgba(230, 230, 230, 0.8);
+}
+
+.CancelBtn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    border: 0.5px rgba(255, 255, 255, 1);
+    color: black;
+}
+
+.Bookmark_Item_Add_Btn {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: var(--small);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 0.5px rgba(241, 241, 241, 0.5);
+}
+
+.Bookmark_Item_Add_Btn:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 0.5px rgba(241, 241, 241, 0.9);
+    color: black;
+}
+
+.Bookmark_Item_InputForm {
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 13px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 0.5px rgba(241, 241, 241, 0.5);
+    font-size: var(--small);
+}
+
+.Bookmark_List a {
+    color: white;
+    display: flex;
+    text-decoration: none;
+}
+
+.Bookmark_List .Bookmark_Icon {
+    margin-right: 8px;
+}
+
+.Bookmark_List img {
+    vertical-align: middle;
+}
+
+.Bookmark_List .Bookmark_Item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--medium);
+    background-color: rgba(255, 255, 255, 0.4);
+
+    padding: 15px;
+    border: 0.5px rgba(241, 241, 241, 0.5);
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.Bookmark_Item .DelBtn {
+    vertical-align: center;
+    color: rgb(100, 100, 100);
+    background-color: rgba(250, 250, 250, 0.5);
+    border-radius: 5px;
+    border: 0.5px rgba(250, 250, 250);
+    padding: 5px;
+    font-size: var(--xsmall);
+    cursor: pointer;
 }

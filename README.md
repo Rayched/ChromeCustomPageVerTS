@@ -660,5 +660,40 @@ Local Storage에 저장된 북마크 정보 (Local Storage - BookmarkList [array
 
  **1. 북마크 아이템 삭제 기능 구현**
 
+``` ts
+//북마크 아이템을 삭제할 수 있는 기능 구현
+
+//setBookmarkItem 함수에서 추가한
+//삭제 버튼 관련 코드
+/*
+    const Bookmark_DelBtn = document.createElement("div");
+    Bookmark_DelBtn.textContent = "삭제";
+    Bookmark_DelBtn.classList.add("DelBtn");
+    
+    Bookmark_DelBtn.addEventListener("click", () => {
+        BookmarkItem_Delete(item.CreateAt);
+    });
+*/
+
+const BookmarkItem_Delete = (id: any) => {
+    const isDelete = window.confirm("북마크를 삭제하시겠습니까?");
+    
+    if(isDelete){
+        let BookmarkList = JSON.parse(localStorage.getItem("BookmarkList") as string);
+        let NowBookmarkList = BookmarkList.filter((elm: any) => elm.CreateAt !== id);
+
+        localStorage.setItem("BookmarkList", JSON.stringify(NowBookmarkList));
+
+        const BookmarkItem_GetById = document.getElementById(`Bookmark_Item-${id}`) as HTMLElement;
+
+        BookmarkItem_GetById.remove();
+    }
+};
+```
+<br>
+
+- 북마크 아이템에서 [삭제] 버튼을 클릭하면, **BookmarkItem_Delete** 함수가 실행된다.
+- 
+
 ---
 

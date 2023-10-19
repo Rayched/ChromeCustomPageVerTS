@@ -13,6 +13,16 @@ const newBookmarkToggle = () => {
     isAddBtnClick ? (newBookmarkForm.style.display = "block") :
         (newBookmarkForm.style.display = "none");
 };
+const BookmarkItem_Delete = (id) => {
+    const isDelete = window.confirm("북마크를 삭제하시겠습니까?");
+    if (isDelete) {
+        let BookmarkList = JSON.parse(localStorage.getItem("BookmarkList"));
+        let NowBookmarkList = BookmarkList.filter((elm) => elm.CreateAt !== id);
+        localStorage.setItem("BookmarkList", JSON.stringify(NowBookmarkList));
+        const BookmarkItem_GetById = document.getElementById(`Bookmark_Item-${id}`);
+        BookmarkItem_GetById.remove();
+    }
+};
 const addBookmarkItem = () => {
     let BookmarkList = [];
     if (localStorage.getItem("BookmarkList")) {
@@ -38,14 +48,11 @@ const setBookmarkItem = (item) => {
     const Bookmark_Item = document.createElement("div");
     Bookmark_Item.classList.add("Bookmark_Item");
     Bookmark_Item.id = `Bookmark_Item-${item.CreateAt}`;
-
     const Bookmark_Info = document.createElement("div");
     Bookmark_Info.classList.add("Bookmark_Info");
-
     const Bookmark_URL = document.createElement("a");
     Bookmark_URL.classList.add("Bookmark_URL");
     Bookmark_URL.href = item.url;
-    
     const Bookmark_Icon = document.createElement("div");
     Bookmark_Icon.classList.add("Bookmark_Icon");
     const Bookmark_IconImage = document.createElement("img");
@@ -56,6 +63,9 @@ const setBookmarkItem = (item) => {
     const Bookmark_DelBtn = document.createElement("div");
     Bookmark_DelBtn.textContent = "삭제";
     Bookmark_DelBtn.classList.add("DelBtn");
+    Bookmark_DelBtn.addEventListener("click", () => {
+        BookmarkItem_Delete(item.CreateAt);
+    });
     Bookmark_Item.appendChild(Bookmark_Info);
     Bookmark_Item.appendChild(Bookmark_DelBtn);
     Bookmark_Info.appendChild(Bookmark_URL);

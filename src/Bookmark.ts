@@ -50,6 +50,19 @@ const newBookmarkToggle = () => {
     (newBookmarkForm.style.display = "none");
 };
 
+//local Storage의 북마크 아이템을 삭제하는 함수 BookmarkItem_Delete
+const BookmarkItem_Delete = (id: any) => {
+    const isDelete = window.confirm("북마크를 삭제하시겠습니까?");
+    
+    if(isDelete){
+        let BookmarkList = JSON.parse(localStorage.getItem("BookmarkList") as string);
+        let NowBookmarkList = BookmarkList.filter((elm: any) => elm.CreateAt !== id);
+        localStorage.setItem("BookmarkList", JSON.stringify(NowBookmarkList));
+        const BookmarkItem_GetById = document.getElementById(`Bookmark_Item-${id}`) as HTMLElement;
+        BookmarkItem_GetById.remove();
+    }
+};
+
 //북마크 추가 logic
 const addBookmarkItem = () => {
     let BookmarkList = [];
@@ -126,6 +139,9 @@ const setBookmarkItem = (item: any) => {
     const Bookmark_DelBtn = document.createElement("div");
     Bookmark_DelBtn.textContent = "삭제";
     Bookmark_DelBtn.classList.add("DelBtn");
+    Bookmark_DelBtn.addEventListener("click", () => {
+        BookmarkItem_Delete(item.CreateAt);
+    });
 
     Bookmark_Item.appendChild(Bookmark_Info);
     Bookmark_Item.appendChild(Bookmark_DelBtn);
@@ -148,12 +164,6 @@ const setBookmarkList = () => {
         setBookmarkItem(item);
     });
 };
-
-//local Storage의 북마크 아이템을 삭제하는 함수 BookmarkItem_Delete
-const BookmarkItem_Delete = () => {
-    const isDelete = window.confirm("북마크를 삭제하시겠습니까?");    
-};
-
 
 let isAddBtnClick: boolean = false;
 newBookmarkForm.style.display = "none";
