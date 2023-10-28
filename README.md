@@ -767,3 +767,110 @@ const setBookmarkItem = (item: any) => {
   처음으로 **제대로 된 웹 페이지**를 구현했다는 점에 <br/>
   의의를 두고 아쉽지만 여기서 끝내야할 것 같다.
 ---
+<br/>
+
+# 📆 2023.10.28 토요일 작업일지 (유지보수)
+
+### 💻 작업 내용
+> 웹 페이지를 닫고, 새로 열었을 때 북마크 바가 계속 열린 상태로 나오던 issue <br>
+  (북마크를 열어놓거나, 닫아놓은 상태로 웹 페이지를 닫아도 영향 X)
+
+> 새로고침을 해도 북마크 바가 열림/닫힘 상태를 유지하도록 코드 변경
+
+---
+<br/>
+
+- **북마크 열림/닫힘 상태 유지 logic 추가**
+  - **변경된 logic**
+  ``` ts
+  //Before
+  const BookmarkBarToggle = () => {
+    if(!BookmarkBar) return;
+    if(!BookmarkOpen) return;
+    if(!BookmarkClose) return;
+
+    const isBookmarkBarOpen = localStorage.getItem("isBookmarkBarOpen");
+
+    if(isBookmarkBarOpen === "open"){
+        localStorage.setItem("isBookmarkBarOpen", "close");
+        BookmarkBar.style.display = "none";
+        BookmarkOpen.style.display = "none";
+        BookmarkClose.style.display = "flex";
+    } 
+    else {
+        localStorage.setItem("isBookmarkBarOpen", "open");
+        BookmarkBar.style.display = "block";
+        BookmarkOpen.style.display = "flex";
+        BookmarkClose.style.display = "none";
+    }
+  };
+
+  //After
+  const BookmarkBar = document.getElementById("Bookmark_Bar") as HTMLElement;
+  const BookmarkOpen = document.getElementById("Bookmark_Open") as HTMLElement;
+  const BookmarkClose = document.getElementById("Bookmark_Close") as HTMLElement;
+
+  const BookmarkOpenBtn = document.getElementById("Bookmark_Open_Btn") as HTMLElement;
+  const BookmarkCloseBtn = document.getElementById("Bookmark_Close_Btn") as HTMLElement;
+
+  //북마크 열림/닫힘 상태를 저장해두는 logic
+
+  const isBookmarkBarOpen = localStorage.getItem("isBookmarkBarOpen");
+
+  if (isBookmarkBarOpen === "close"){
+    //localStorage에 저장된 isBookmarkBarOpen의 value가 'close'라면
+    //북마크 닫힘 상태 유지
+    BookmarkBar.style.display = "none";
+    BookmarkOpen.style.display = "none";
+    BookmarkClose.style.display = "flex";
+  } else {
+    //isBookmarkBarOpen의 value가 'open' 이라면
+    //북마크 열림 상태 유지
+    BookmarkBar.style.display = "block";
+    BookmarkOpen.style.display = "flex";
+    BookmarkClose.style.display = "none";
+  }
+  /*
+    * [북마크 열기]를 클릭하면, 북마크 바를 열고
+      [북마크 닫기]를 클릭하면, 북마크 바를 닫는 동작을 수행하는
+      BookmarkBarToggle 함수
+  */
+
+  const BookmarkBarToggle = () => {
+    let isBookmarkBarOpen = localStorage.getItem("isBookmarkBarOpen");
+
+    if (isBookmarkBarOpen === "close"){
+        localStorage.setItem("isBookmarkBarOpen", "open");
+        BookmarkBar.style.display = "block";
+        BookmarkOpen.style.display = "flex";
+        BookmarkClose.style.display = "none";
+        return;
+    }
+
+    localStorage.setItem("isBookmarkBarOpen", "close");
+    BookmarkBar.style.display = "none";
+    BookmarkOpen.style.display = "none";
+    BookmarkClose.style.display = "flex";
+  };
+
+  BookmarkOpenBtn.addEventListener("click", BookmarkBarToggle);
+  BookmarkCloseBtn.addEventListener("click", BookmarkBarToggle);
+  ```
+
+- 북마크 바의 열림/닫힘 상태를 localStorage의 isBookmarkBarOpen에 저장 <br/>
+  마지막에 북마크 바의 상태를 저장해뒀다가, 웹 페이지를 새로고침하면 <br/>
+  그 상태가 그대로 유지가 되도록 설정 <br/>
+  (`isBookmarkBarOpen`의 값에 따라 북마크 바 열림/닫힘 상태 유지)
+
+- [북마크 열기] 버튼을 클릭하면, 북마크가 열리고 <br/>
+  [북마크 닫기] 버튼을 클릭하면, 북마크가 닫히는 `BookmarkBarToggle` 함수 logic <br/> 일부 수정하였음.
+
+- `isBookmarkBarOpen`의 값이 `close`인 상태에서 <br/>
+  [북마크 열기] 버튼을 누르면, `BookmarkBarToggle` 함수 실행 <br/>
+  함수 내부에 있는 if문의 조건식을 만족하므로 if문 실행 <br/>
+
+- `isBookmarkBarOpen`의 값을 `open`으로 변경<br/>
+  이후 북마크 바의 style을 열림 상태의 style로 변경하고, 함수 실행 종료
+
+---
+
