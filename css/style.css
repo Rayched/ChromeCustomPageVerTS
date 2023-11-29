@@ -10,8 +10,9 @@
 body {
     font-family: 'Nanum Gothic', sans-serif;
     margin : 0 auto;
-    width: 100%;
-    background-image: url("/SampleImage/KakaoTalk_20230722_155853902.jpg");
+    height: 100vh;
+    background: url(/img/Background_Image/20231027_144001.jpg) no-repeat center;
+    background-size: cover;
 }
 
 .Main_Container {
@@ -93,7 +94,7 @@ body {
 }
 
 .Bookmark_Close {
-    width: 240px;
+    width: auto;
     padding: 15px 30px;
     font-size: var(--small);
     height: 20px;
@@ -104,6 +105,7 @@ body {
     justify-content: flex-end;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 }
 
 .Bookmark_Close div {
