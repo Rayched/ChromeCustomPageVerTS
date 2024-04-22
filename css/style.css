@@ -33,7 +33,11 @@ body {
 }
 
 .Main_Wrapper .Today_Info {
-    color: white;
+    color: rgb(230, 230, 240);
+    background-color: rgba(85, 85, 85, 0.6);
+    border-radius: 20px;
+    width: 250px;
+    margin: 0 auto;
 }
 
 .Main_Wrapper .Today_Date {
@@ -64,7 +68,7 @@ body {
 
 .Search #Search_Input {
     width: 600px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     font-size: var(--medium);
     padding: 15px 0px;
